@@ -58,6 +58,22 @@ app.delete('/api/persons/:id', (req, res) => {
 app.post('/api/persons/', (req, res) => {
   const person = req.body
 
+  if (!person.name) {
+    return res.status(400).json({
+      error: 'Name entry is missing.'
+    })
+  }
+  if (!person.number) {
+    return res.status(400).json({
+      error: 'Number entry is missing.'
+    })
+  }
+  if (persons.find(entry => entry.name.toLowerCase() === person.name.toLowerCase())) {
+    return res.status(409).json({
+      error: 'The name already exists in the phonebook, name must be unique.'
+    })
+  }
+
   person.id = Math.floor(Math.random() * 1000)
 
   persons = persons.concat(person)
