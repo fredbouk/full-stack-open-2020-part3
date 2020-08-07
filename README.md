@@ -2,6 +2,6 @@
 
 Implement a REST API in Node.js by using the Express library
 
-[Part 3](https://fullstackopen.com/en/part3/) 
+[View API](https://phonebook-api-007.herokuapp.com/api/persons/) 
 
-[View live App](https://phonebook-api-007.herokuapp.com/api/persons/) 
+[View live APP](https://phonebook-api-007.herokuapp.com/) 
