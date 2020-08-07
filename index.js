@@ -5,8 +5,8 @@ const cors = require('cors')
 const app = express()
 
 // middleware
+app.use(express.static('build'))
 app.use(express.json())
-
 app.use(cors())
 
 morgan.token('data', (req, res) => JSON.stringify(req.body))
