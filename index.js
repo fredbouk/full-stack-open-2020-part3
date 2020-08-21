@@ -7,13 +7,11 @@ const Person = require('./models/person')
 
 const app = express()
 
-// middleware
 app.use(express.static('build'))
 app.use(express.json())
 app.use(cors())
 
 morgan.token('data', (req, res) => JSON.stringify(req.body))
-
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :data'))
 
 app.get('/api/persons', (req, res) => {
@@ -40,10 +38,10 @@ app.get('/api/persons/:id', (req, res) => {
 })
 
 app.delete('/api/persons/:id', (req, res) => {
-  const id = Number(req.params.id)
-  persons = persons.filter(person => person.id !== id)
-
-  res.status(204).end()
+  Person.findByIdAndRemove(req.params.id)
+    .then(result => {
+      res.status(204).end()
+    })
 })
 
 app.post('/api/persons/', (req, res) => {
