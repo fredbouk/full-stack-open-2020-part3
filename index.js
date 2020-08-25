@@ -1,3 +1,5 @@
+// Used StandardJS to lint (https://standardjs.com/)
+
 require('dotenv').config()
 const express = require('express')
 const morgan = require('morgan')
