@@ -14,7 +14,7 @@ app.use(cors())
 morgan.token('data', (req, res) => JSON.stringify(req.body))
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :data'))
 
-app.get('/api/persons', (req, res, next) => {
+app.get('/api/persons', (req, res) => {
   Person.find({}).then(persons => {
     res.json(persons)
   })
@@ -81,7 +81,7 @@ app.put('/api/persons/:id', (request, response, next) => {
     number: body.number
   }
 
-  Person.findByIdAndUpdate(request.params.id, updatePerson, { new: true })
+  Person.findByIdAndUpdate(request.params.id, updatePerson, { new: true, runValidators: true })
     .then(updatedPerson => {
       response.json(updatedPerson)
     })
